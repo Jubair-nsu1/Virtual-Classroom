@@ -66,11 +66,11 @@
 
         <div class="form-row">
           <input type="username" name="username" class="form-control custom_form" placeholder="Username" required >
-        </div>
+        </div></br>
 
     <div class="form-row">
       <input type="password" name="password" class="form-control custom_form" placeholder="Password"  required >
-    </div>
+    </div></br>
 
   	<center><input type="submit" name="faculty_login" class="btn btn-primary" value="Login"  <br></center>
   </form>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2020 at 06:19 PM
+-- Generation Time: Dec 27, 2020 at 04:58 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -44,8 +44,7 @@ INSERT INTO `admin` (`id`, `name`, `fid`, `username`, `password`) VALUES
 (2, 'Faculty2', 'admin02', 'admin2', '2222'),
 (4, 'Zafor', NULL, 'Zf1', 'asdzxc'),
 (5, 'Rahim', NULL, 'rahim77', 'qweasd'),
-(6, 'Rahim', NULL, 'rhm1', 'zxc'),
-(7, 'jikd', NULL, 'jik1', 'asd');
+(6, 'Rahim', NULL, 'rhm1', 'zxc');
 
 -- --------------------------------------------------------
 
@@ -55,8 +54,6 @@ INSERT INTO `admin` (`id`, `name`, `fid`, `username`, `password`) VALUES
 
 CREATE TABLE `answer` (
   `id` int(100) NOT NULL,
-  `fid` varchar(30) DEFAULT NULL,
-  `class_code` varchar(30) DEFAULT NULL,
   `qid` text NOT NULL,
   `ansid` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -65,13 +62,17 @@ CREATE TABLE `answer` (
 -- Dumping data for table `answer`
 --
 
-INSERT INTO `answer` (`id`, `fid`, `class_code`, `qid`, `ansid`) VALUES
-(15, NULL, NULL, '5f6b6e230a29c', '5f6b6e230a89f'),
-(16, NULL, NULL, '5f6b6e230cd08', '5f6b6e230d5a3'),
-(17, NULL, NULL, '5f6b6e230f7f9', '5f6b6e230ff53'),
-(18, NULL, NULL, '5f71f098c6521', '5f71f098caffd'),
-(19, NULL, NULL, '5f71f098d4be1', '5f71f098d567f'),
-(20, NULL, NULL, '5f71f098d7e17', '5f71f098d8587');
+INSERT INTO `answer` (`id`, `qid`, `ansid`) VALUES
+(15, '5f6b6e230a29c', '5f6b6e230a89f'),
+(16, '5f6b6e230cd08', '5f6b6e230d5a3'),
+(17, '5f6b6e230f7f9', '5f6b6e230ff53'),
+(18, '5f71f098c6521', '5f71f098caffd'),
+(19, '5f71f098d4be1', '5f71f098d567f'),
+(20, '5f71f098d7e17', '5f71f098d8587'),
+(21, '5fe1961cb346d', '5fe1961cb43fa'),
+(22, '5fe1961cb7001', '5fe1961cb7781'),
+(23, '5fe1964fbf01c', '5fe1964fbf84f'),
+(24, '5fe1964fc2191', '5fe1964fc26b0');
 
 -- --------------------------------------------------------
 
@@ -85,17 +86,38 @@ CREATE TABLE `class` (
   `section` int(5) NOT NULL,
   `subject` varchar(20) DEFAULT NULL,
   `fid` varchar(25) NOT NULL,
-  `class_code` varchar(20) DEFAULT NULL
+  `class_code` varchar(20) DEFAULT NULL,
+  `sid` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `class`
 --
 
-INSERT INTO `class` (`id`, `name`, `section`, `subject`, `fid`, `class_code`) VALUES
-(13, 'phy107.zbm', 23, 'physics1', 'admin', 'eSDBznL1'),
-(15, 'Maths Test-1', 23, 'arabic', 'admin2', 'lm1aIFqN'),
-(17, 'Maths Test-2', 31, 'maths', 'admin', '4z3kZsun');
+INSERT INTO `class` (`id`, `name`, `section`, `subject`, `fid`, `class_code`, `sid`) VALUES
+(22, 'phy107.zbm', 2, 'physics', 'admin', 'E3CGZ6iC', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `enrolment`
+--
+
+CREATE TABLE `enrolment` (
+  `id` int(100) NOT NULL,
+  `class_code` varchar(20) NOT NULL,
+  `sid` varchar(30) NOT NULL,
+  `class_name` varchar(40) NOT NULL,
+  `section` int(10) NOT NULL,
+  `fname` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `enrolment`
+--
+
+INSERT INTO `enrolment` (`id`, `class_code`, `sid`, `class_name`, `section`, `fname`) VALUES
+(18, 'E3CGZ6iC', 'ratul111', 'phy107.zbm', 2, 'Faculty1');
 
 -- --------------------------------------------------------
 
@@ -136,8 +158,6 @@ CREATE TABLE `fileup` (
 
 CREATE TABLE `history` (
   `id` int(100) NOT NULL,
-  `fid` varchar(30) DEFAULT NULL,
-  `class_code` varchar(20) DEFAULT NULL,
   `username` varchar(50) NOT NULL,
   `eid` text NOT NULL,
   `score` int(11) NOT NULL,
@@ -154,9 +174,8 @@ CREATE TABLE `history` (
 -- Dumping data for table `history`
 --
 
-INSERT INTO `history` (`id`, `fid`, `class_code`, `username`, `eid`, `score`, `level`, `correct`, `wrong`, `date`, `timestamp`, `status`, `score_updated`) VALUES
-(5, NULL, NULL, 'jubair421', '5f6b6db27c831', 4, 3, 2, 1, '2020-09-23 16:31:08', 1600878621, 'finished', 'true'),
-(6, NULL, NULL, 'jubair421', '5f71f0420ba82', 2, 3, 2, 1, '2020-09-28 14:18:57', 1601302706, 'finished', 'true');
+INSERT INTO `history` (`id`, `username`, `eid`, `score`, `level`, `correct`, `wrong`, `date`, `timestamp`, `status`, `score_updated`) VALUES
+(7, 'ratul111', '5fe1963581677', 2, 2, 1, 7, '2020-12-27 12:50:24', 1609073373, 'finished', 'true');
 
 -- --------------------------------------------------------
 
@@ -166,8 +185,6 @@ INSERT INTO `history` (`id`, `fid`, `class_code`, `username`, `eid`, `score`, `l
 
 CREATE TABLE `options` (
   `id` int(100) NOT NULL,
-  `fid` varchar(30) DEFAULT NULL,
-  `class_code` varchar(20) DEFAULT NULL,
   `qid` varchar(50) NOT NULL,
   `option` varchar(5000) NOT NULL,
   `optionid` text NOT NULL
@@ -177,31 +194,23 @@ CREATE TABLE `options` (
 -- Dumping data for table `options`
 --
 
-INSERT INTO `options` (`id`, `fid`, `class_code`, `qid`, `option`, `optionid`) VALUES
-(57, NULL, NULL, '5f6b6e230a29c', '2', '5f6b6e230a899'),
-(58, NULL, NULL, '5f6b6e230a29c', '6', '5f6b6e230a89d'),
-(59, NULL, NULL, '5f6b6e230a29c', '11', '5f6b6e230a89e'),
-(60, NULL, NULL, '5f6b6e230a29c', '9', '5f6b6e230a89f'),
-(61, NULL, NULL, '5f6b6e230cd08', '20', '5f6b6e230d59e'),
-(62, NULL, NULL, '5f6b6e230cd08', '35', '5f6b6e230d5a2'),
-(63, NULL, NULL, '5f6b6e230cd08', '16', '5f6b6e230d5a3'),
-(64, NULL, NULL, '5f6b6e230cd08', '26', '5f6b6e230d5a4'),
-(65, NULL, NULL, '5f6b6e230f7f9', '4', '5f6b6e230ff4d'),
-(66, NULL, NULL, '5f6b6e230f7f9', '10', '5f6b6e230ff53'),
-(67, NULL, NULL, '5f6b6e230f7f9', '9', '5f6b6e230ff54'),
-(68, NULL, NULL, '5f6b6e230f7f9', '15', '5f6b6e230ff55'),
-(69, NULL, NULL, '5f71f098c6521', '10', '5f71f098caff6'),
-(70, NULL, NULL, '5f71f098c6521', '20', '5f71f098caffc'),
-(71, NULL, NULL, '5f71f098c6521', '30', '5f71f098caffd'),
-(72, NULL, NULL, '5f71f098c6521', '40', '5f71f098caffe'),
-(73, NULL, NULL, '5f71f098d4be1', '20', '5f71f098d5678'),
-(74, NULL, NULL, '5f71f098d4be1', '30', '5f71f098d567d'),
-(75, NULL, NULL, '5f71f098d4be1', '40', '5f71f098d567e'),
-(76, NULL, NULL, '5f71f098d4be1', '50', '5f71f098d567f'),
-(77, NULL, NULL, '5f71f098d7e17', '15', '5f71f098d8583'),
-(78, NULL, NULL, '5f71f098d7e17', '25', '5f71f098d8587'),
-(79, NULL, NULL, '5f71f098d7e17', '35', '5f71f098d8588'),
-(80, NULL, NULL, '5f71f098d7e17', '40', '5f71f098d8589');
+INSERT INTO `options` (`id`, `qid`, `option`, `optionid`) VALUES
+(81, '5fe1961cb346d', '', '5fe1961cb43fa'),
+(82, '5fe1961cb346d', '', '5fe1961cb43fe'),
+(83, '5fe1961cb346d', '', '5fe1961cb43ff'),
+(84, '5fe1961cb346d', '', '5fe1961cb4400'),
+(85, '5fe1961cb7001', '', '5fe1961cb7781'),
+(86, '5fe1961cb7001', '', '5fe1961cb7786'),
+(87, '5fe1961cb7001', '', '5fe1961cb7788'),
+(88, '5fe1961cb7001', '', '5fe1961cb7789'),
+(89, '5fe1964fbf01c', '1', '5fe1964fbf845'),
+(90, '5fe1964fbf01c', '2', '5fe1964fbf84b'),
+(91, '5fe1964fbf01c', '3', '5fe1964fbf84f'),
+(92, '5fe1964fbf01c', '4', '5fe1964fbf851'),
+(93, '5fe1964fc2191', '23', '5fe1964fc26ab'),
+(94, '5fe1964fc2191', '4', '5fe1964fc26b0'),
+(95, '5fe1964fc2191', '5', '5fe1964fc26b2'),
+(96, '5fe1964fc2191', '6', '5fe1964fc26b3');
 
 -- --------------------------------------------------------
 
@@ -211,8 +220,6 @@ INSERT INTO `options` (`id`, `fid`, `class_code`, `qid`, `option`, `optionid`) V
 
 CREATE TABLE `questions` (
   `id` int(100) NOT NULL,
-  `fid` varchar(30) DEFAULT NULL,
-  `class_code` varchar(20) DEFAULT NULL,
   `eid` text NOT NULL,
   `qid` text NOT NULL,
   `qns` text NOT NULL,
@@ -224,13 +231,11 @@ CREATE TABLE `questions` (
 -- Dumping data for table `questions`
 --
 
-INSERT INTO `questions` (`id`, `fid`, `class_code`, `eid`, `qid`, `qns`, `choice`, `sn`) VALUES
-(15, NULL, NULL, '5f6b6db27c831', '5f6b6e230a29c', '4+5=?', 4, 1),
-(16, NULL, NULL, '5f6b6db27c831', '5f6b6e230cd08', '2*8=?', 4, 2),
-(17, NULL, NULL, '5f6b6db27c831', '5f6b6e230f7f9', '30/3=?', 4, 3),
-(18, NULL, NULL, '5f71f0420ba82', '5f71f098c6521', '10+20=?', 4, 1),
-(19, NULL, NULL, '5f71f0420ba82', '5f71f098d4be1', '5*10=?', 4, 2),
-(20, NULL, NULL, '5f71f0420ba82', '5f71f098d7e17', '100/4=?', 4, 3);
+INSERT INTO `questions` (`id`, `eid`, `qid`, `qns`, `choice`, `sn`) VALUES
+(21, '5fe1949e35da8', '5fe1961cb346d', '', 4, 1),
+(22, '5fe1949e35da8', '5fe1961cb7001', '', 4, 2),
+(23, '5fe1963581677', '5fe1964fbf01c', 'asdasd?\r\n', 4, 1),
+(24, '5fe1963581677', '5fe1964fc2191', 'kasdjw?', 4, 2);
 
 -- --------------------------------------------------------
 
@@ -241,8 +246,6 @@ INSERT INTO `questions` (`id`, `fid`, `class_code`, `eid`, `qid`, `qns`, `choice
 CREATE TABLE `quiz` (
   `id` int(100) NOT NULL,
   `eid` text NOT NULL,
-  `username` varchar(20) DEFAULT NULL,
-  `class_code` varchar(20) DEFAULT NULL,
   `title` varchar(100) NOT NULL,
   `correct` int(11) NOT NULL,
   `wrong` int(11) NOT NULL,
@@ -256,9 +259,8 @@ CREATE TABLE `quiz` (
 -- Dumping data for table `quiz`
 --
 
-INSERT INTO `quiz` (`id`, `eid`, `username`, `class_code`, `title`, `correct`, `wrong`, `total`, `time`, `date`, `status`) VALUES
-(6, '5f6b6db27c831', 'admin', NULL, 'Maths Test-1', 2, 0, 3, 4, '2020-11-30 05:21:33', 'disabled'),
-(7, '5f71f0420ba82', 'admin', NULL, 'Maths Test-2', 1, 0, 3, 3, '2020-11-30 05:21:41', 'enabled');
+INSERT INTO `quiz` (`id`, `eid`, `title`, `correct`, `wrong`, `total`, `time`, `date`, `status`) VALUES
+(8, '5fe1963581677', 'Phy107.zbm', 2, 0, 2, 2, '2020-12-27 12:49:26', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -268,8 +270,6 @@ INSERT INTO `quiz` (`id`, `eid`, `username`, `class_code`, `title`, `correct`, `
 
 CREATE TABLE `rank` (
   `id` int(100) NOT NULL,
-  `fid` varchar(30) DEFAULT NULL,
-  `class_code` varchar(30) DEFAULT NULL,
   `username` varchar(50) NOT NULL,
   `score` int(11) NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -279,8 +279,8 @@ CREATE TABLE `rank` (
 -- Dumping data for table `rank`
 --
 
-INSERT INTO `rank` (`id`, `fid`, `class_code`, `username`, `score`, `time`) VALUES
-(4, NULL, NULL, 'jubair421', 6, '2020-09-28 14:18:57');
+INSERT INTO `rank` (`id`, `username`, `score`, `time`) VALUES
+(5, 'ratul111', 2, '2020-12-27 12:50:24');
 
 -- --------------------------------------------------------
 
@@ -304,8 +304,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `rollno`, `branch`, `gender`, `username`, `phno`, `password`) VALUES
-(10, 'Adnan', '', 'CSE', '', 'adnan365', 17623923922, '81dc9bdb52d04dc20036dbd8313ed055'),
-(6, 'Jubair', '', 'CSE', '', 'jubair421', 1675938122, '46f94c8de14fb36680850768ff1b7f2a'),
 (11, 'Ratul', '', '', '', 'ratul111', 1711083188, 'qwe123');
 
 -- --------------------------------------------------------
@@ -324,18 +322,6 @@ CREATE TABLE `user_answer` (
   `fid` varchar(30) DEFAULT NULL,
   `class_code` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_answer`
---
-
-INSERT INTO `user_answer` (`id`, `qid`, `ans`, `correctans`, `eid`, `username`, `fid`, `class_code`) VALUES
-(19, '5f6b6e230a29c', '5f6b6e230a89f', '5f6b6e230a89f', '5f6b6db27c831', 'jubair421', NULL, NULL),
-(20, '5f6b6e230cd08', '5f6b6e230d5a3', '5f6b6e230d5a3', '5f6b6db27c831', 'jubair421', NULL, NULL),
-(21, '5f6b6e230f7f9', '5f6b6e230ff4d', '5f6b6e230ff53', '5f6b6db27c831', 'jubair421', NULL, NULL),
-(22, '5f71f098c6521', '5f71f098caffd', '5f71f098caffd', '5f71f0420ba82', 'jubair421', NULL, NULL),
-(23, '5f71f098d4be1', '5f71f098d567f', '5f71f098d567f', '5f71f0420ba82', 'jubair421', NULL, NULL),
-(24, '5f71f098d7e17', '5f71f098d8588', '5f71f098d8587', '5f71f0420ba82', 'jubair421', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -357,6 +343,12 @@ ALTER TABLE `answer`
 -- Indexes for table `class`
 --
 ALTER TABLE `class`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `enrolment`
+--
+ALTER TABLE `enrolment`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -423,13 +415,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `enrolment`
+--
+ALTER TABLE `enrolment`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `fileup`
@@ -441,37 +439,37 @@ ALTER TABLE `fileup`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `rank`
 --
 ALTER TABLE `rank`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_answer`

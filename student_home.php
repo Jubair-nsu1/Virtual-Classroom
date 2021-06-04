@@ -38,11 +38,11 @@ if (!(isset($_SESSION['username']))) {
 </head>
 <body>
 
-<!--navigation-->
+<!--navigation bar-->
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="landingpage.php">
+            <a class="navbar-brand heading-black" href="#">
                 Virtual Classroom
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -63,7 +63,7 @@ if (!(isset($_SESSION['username']))) {
         </nav>
     </div>
 </section>
-<!--End of  header-->
+<!--End of navigation bar-->
 
 </br></br></br></br></br></br>
 
@@ -81,7 +81,7 @@ if (!(isset($_SESSION['username']))) {
 <div class="col-md-6">
   <form role="form" method="post" action="function.php">
     <div class="form-group">
-      <input type="text" name="code" maxlength="20"  placeholder="Enter Class Code" class="form-control" required>
+      <input type="text" name="class_code" maxlength="20"  placeholder="Enter Class Code" class="form-control" required>
     </div>
 
     <div class="form-group" align="center">
@@ -95,6 +95,71 @@ if (!(isset($_SESSION['username']))) {
 </div>
 </div>
 <!--End of Creating Class-->
+
+<!-- Form to enter classes-->
+
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <h3 class="h3_txt"><center>  		Enter Class using Class Code </center></h3>
+  <form role="form" method="post" action="function.php">
+
+    <div class="form-group">
+      <input type="text" name="class_code" maxlength="20"  placeholder="Enter Class Code" class="form-control">
+    </div>
+
+    <div class="form-group" align="center">
+      <input type="submit" name="enter_class_student" value="Enter Class" class="btn btn-primary" >
+    </div>
+  </form>
+</div><div class="col-md-3"></div></div>
+
+<!-- Form to enter classes-->
+</br></br></br></br></br>
+
+
+
+<!--Creating Class List-->
+
+<?php
+include_once("dbConnection.php");
+$sql = "Select class_name,section,fname,class_code From enrolment WHERE sid='$studentLoggedIn'";
+
+$resultset = mysqli_query($con, $sql) or die("database error:". mysqli_error($con));
+while( $record = mysqli_fetch_assoc($resultset) ) {
+?>
+
+<form role="form" method="post" action="function.php">
+<div class="row vh-md-50">
+<div class="col-md-4 col-sm-10 col-12 mx-auto my-auto text-center">
+<div class="card hovercard">
+
+<div class="cardheader"></div>
+<div class="card-body info">
+
+<div class="title">
+<a href="#"><h3><?php echo $record['class_name']; ?></h3></a></br>
+<a href="#"><h6>Section :  <?php echo $record['section']; ?></h6></a>
+<a href="#"><h6>Faculty :  <?php echo $record['fname']; ?></h6></a>
+<a ><h6>Code :  <?php echo $record['class_code']; ?></h6></a>
+</div>
+
+</div>
+
+<!--
+<div class="card-footer bottom">
+    <input type="submit" name="enter_class_student" value="Enter" class="btn btn-primary" >
+</div>
+-->
+
+</div>
+</div>
+</div>
+</form>
+</br></br>
+<?php } ?>
+<!--End of Creating Class List-->
+
 
 
 

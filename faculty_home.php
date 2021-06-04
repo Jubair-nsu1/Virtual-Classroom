@@ -1,7 +1,7 @@
 <?php
 include_once 'dbConnection.php';
 session_start();
-if (!(isset($_SESSION['username']))) {
+if (!(isset($_SESSION['username'])) && $_SESSION["key"] = '54585c506829293a2d4c3b68543b316e2e7a2d277858545a36362e5f39') {
     session_destroy();
     header("location:landingpage.php");
 } else {
@@ -12,6 +12,7 @@ if (!(isset($_SESSION['username']))) {
     echo '<span class="pull-right top title1" ><span style="color:white"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Hello,</span> <span class="log log1" style="color:lightyellow">' . $name . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></button></a></span>';
 }
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -107,6 +108,28 @@ if (!(isset($_SESSION['username']))) {
 <!--End of Creating Class-->
 
 
+<!-- Form to enter classes-->
+
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <h3 class="h3_txt"><center>  		Enter Class using Class Code </center></h3>
+  <form role="form" method="post" action="function.php">
+
+    <div class="form-group">
+      <input type="text" name="class_code" maxlength="20"  placeholder="Enter Class Code" class="form-control">
+    </div>
+
+    <div class="form-group" align="center">
+      <input type="submit" name="enter_class_faculty" value="Enter Class" class="btn btn-primary" >
+    </div>
+  </form>
+</div><div class="col-md-3"></div></div>
+
+<!-- Form to enter classes-->
+</br></br></br></br></br>
+
+
 
 <!--Creating Class List-->
 <?php
@@ -117,7 +140,7 @@ $resultset = mysqli_query($con, $sql) or die("database error:". mysqli_error($co
 while( $record = mysqli_fetch_assoc($resultset) ) {
 ?>
 
-<form role="form" method="post" action="function.php">
+<form role="form" >
 <div class="row vh-md-50">
 <div class="col-md-4 col-sm-10 col-12 mx-auto my-auto text-center">
 <div class="card hovercard">
@@ -127,14 +150,17 @@ while( $record = mysqli_fetch_assoc($resultset) ) {
 
 <div class="title">
 <a href="#"><h3><?php echo $record['name']; ?></h3></a></br>
-<a href="#"><h6>Section :<?php echo $record['section']; ?></h6></a>
+<a href="#"><h6>Section :  <?php echo $record['section']; ?></h6></a>
+<a href="#"><h9>Code :  <?php echo $record['class_code']; ?></h9></a>
 </div>
 
 </div>
 
+<!--
 <div class="card-footer bottom">
-    <input type="submit" name="enter_class" value="Enter" class="btn btn-primary" >
+    <input type="submit" name="enter_class_faculty" value="Enter" class="btn btn-primary" >
 </div>
+-->
 
 </div>
 </div>
