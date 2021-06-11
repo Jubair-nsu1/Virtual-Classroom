@@ -1,6 +1,6 @@
 # Virtual-Classroom
 </br>
-This is a simple university course project. A user can book a bus for a particular destination   
+This is a university course project. The Virtual Classroom allows teachers and students to perform their educational activities.    
 
 ------------------------------
 
@@ -11,6 +11,31 @@ This is a simple university course project. A user can book a bus for a particul
 -----------------------------
 
 </br>
+
+### Features
+
+1. Teachers can create multiple classes and each class contains a unique class code. </br>
+2. Students can join to a class using the class code. </br>
+3. Teachers can take MCQ based exam. </br>
+4. Teachers can give Assignments to students. </br>
+5. Auto-Assessment of students' performace. </br>
+6. Teachers can see the results of a particular class or a specific course. </br> 
+7. Data Analytics of students' performance. </br>
+
+-------------------------
+
+### Real-Time MCQ Exam
+
+
+-------------------------
+
+### Assignment
+
+
+-------------------------
+
+### Data Analytics
+
 
 
 -----------------------------
