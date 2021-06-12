@@ -12,13 +12,13 @@ This is a university course project. The Virtual Classroom allows teachers and s
 
 ## Features
 
-A. Teachers can create multiple classes and each class contains a unique class code. </br>
-B. Students can join to a class using the class code. </br>
-C. Teachers can take MCQ based exam. </br>
-D. Teachers can give Assignments to students. </br>
-E. Auto-Assessment of students' performace. </br>
-F. Teachers can see the results of a particular class or a specific course. </br> 
-G. Data Analytics of students' performance. </br>
+- Teachers can create multiple classes and each class contains a unique class code. </br>
+- Students can join to a class using the class code. </br>
+- Teachers can take MCQ based exam. </br>
+- Teachers can give Assignments to students. </br>
+- Auto-Assessment of students' performace. </br>
+- Teachers can see the results of a particular class or a specific course. </br> 
+- Data Analytics of students' performance. </br>
 
 -------------------------
 
@@ -26,7 +26,7 @@ G. Data Analytics of students' performance. </br>
 
 </br>
 
-i. Faculty creating exam question </br>
+- Faculty creating exam question </br>
 
 <p align="center">
 <img src="image/faculty make question.jpg" height="200">
@@ -35,7 +35,7 @@ i. Faculty creating exam question </br>
 </br>
 
 
-ii. Exam portal </br>
+- Exam portal </br>
 
 <p align="center">
 <img src="image/exam.jpg" height="250">
@@ -43,7 +43,7 @@ ii. Exam portal </br>
 </br>
 
 
-iii. Auto-assessment of Exam with detailed analysis</br>
+- Auto-assessment of Exam with detailed analysis</br>
 
 <p align="center">
 <img src="image/result.jpg" height="200">
@@ -60,21 +60,21 @@ iii. Auto-assessment of Exam with detailed analysis</br>
 
 </br>
 
-i. Faculty creating assignment
+- Faculty creating assignment
 
 <p align="center">
 <img src="image/creating assignments by fac.jpg" height="400">
 </p>
 </br>
 
-ii. Students viewing assignment
+- Students viewing assignment
 
 <p align="center">
 <img src="image/Viewing assignmnt by students.jpg" height="300">
 </p>
 </br>
 
-iii. Submission portal
+- Submission portal
 
 <p align="center">
 <img src="image/submission portal.jpg" height="400">
@@ -87,7 +87,6 @@ iii. Submission portal
 ### 3. DATA ANALYTICS
 
 </br>
-
 
 Statistical data visualization of class performance is created which helps to see the data using bar chart. Faculty can also see the data analytics of a particular exam for specific class.</br>
 
