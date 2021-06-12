@@ -52,8 +52,6 @@ This is a university course project. The Virtual Classroom allows teachers and s
 </br>
 
 
-</br>
-
 -------------------------
 
 ### 2. ASSIGNMENT 
