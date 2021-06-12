@@ -43,10 +43,11 @@ ii. Exam portal </br>
 </br>
 
 
-iii. Auto-assessment of Exam </br>
+iii. Auto-assessment of Exam with detailed analysis</br>
 
 <p align="center">
-<img src="image/result.jpg" height="250">
+<img src="image/result.jpg" height="200">
+<img src="image/detailed analysis.jpg" height="200">  
 </p>
 </br>
 
